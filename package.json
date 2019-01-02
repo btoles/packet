@@ -1,0 +1,25 @@
+{
+  "name": "packet",
+  "version": "1.0.0",
+  "description": "A project for Packet Tech Challenge.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "launch": "node launch.js",
+    "teardown": "node teardown.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/btoles/packet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/btoles/packet/issues"
+  },
+  "homepage": "https://github.com/btoles/packet#readme"
+}

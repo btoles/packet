@@ -1,6 +1,21 @@
 const fetch = require('node-fetch');
 require('dotenv').config();
 
+const handleBadResponse = response => {
+    if (/5\d\d/.test(response.status)) {
+        console.log('Unable to communicate to the Packet service(s) at the moment, try again later.');
+    }
+    if (response.status === 401) {
+        console.log('The API key was either not provided or invalid.');
+    }
+    if (response.status === 404) {
+        console.log('The requested resource doesn\'t exist.');
+    }
+    if (response.status === 422) {
+        console.log('The request was malformed, please check that you have all required parameters in your request.');
+    }
+}
+
 /** Class to interact with the Packet API */
 class PacketService {
     /** 
@@ -29,6 +44,9 @@ class PacketService {
             if (response.ok) {
                 return await response.json();
             }
+            else {
+                handleBadResponse(response);
+            }
         }
         catch (error) {
             console.log(error);
@@ -43,6 +61,9 @@ class PacketService {
             const response = await this.fetch('/operating-systems', { method: 'GET' });
             if (response.ok) {
                 return await response.json();
+            }
+            else {
+                handleBadResponse(response);
             }
         }
         catch (error) {
@@ -59,6 +80,9 @@ class PacketService {
             const response = await this.fetch(`/projects/${projectId}/facilities`, { method: 'GET' });
             if (response.ok) {
                 return await response.json();
+            }
+            else {
+                handleBadResponse(response);
             }
         }
         catch (error) {
@@ -79,9 +103,29 @@ class PacketService {
             if (response.ok) {
                 return await response.json();
             }
+            else {
+                handleBadResponse(response);
+            }
         }
         catch (error) {
             console.log(error);
+        }
+    }
+
+    /**
+     * Deletes a device and deprovisions from Packet's datacenter
+     * @param {string} deviceId - Unique identifier of the device to be deleted
+     * @returns {boolean} - true if deleted sucessfully, false otherwise.
+     */
+    async deleteDevice(deviceId) {
+        try {
+            const response = await this.fetch(`/devices/${deviceId}`, { method: 'DELETE' });
+            if (response.ok) {
+                return true;
+            }
+        }
+        catch (error) {
+            return false;
         }
     }
 }

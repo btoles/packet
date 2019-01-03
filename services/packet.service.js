@@ -56,7 +56,7 @@ class PacketService {
      */
     async getFacilities(projectId) {
         try {
-            const response = await this.fetch('/projects/${projectId}/facilities', { method: 'GET' });
+            const response = await this.fetch(`/projects/${projectId}/facilities`, { method: 'GET' });
             if (response.ok) {
                 return await response.json();
             }

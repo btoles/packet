@@ -5,15 +5,19 @@ require('dotenv').config();
 const handleBadResponse = response => {
     if (/5\d\d/.test(response.status)) {
         console.log('Unable to communicate to the Packet service(s) at the moment, try again later.');
+        process.exit(1);
     }
     if (response.status === 401) {
         console.log('The API key was either not provided or invalid.');
+        process.exit(1);
     }
     if (response.status === 404) {
         console.log('The requested resource doesn\'t exist.');
+        process.exit(1);
     }
     if (response.status === 422) {
         console.log('The request was malformed, please check that you have all required parameters in your request.');
+        process.exit(1);
     }
 }
 

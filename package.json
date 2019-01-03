@@ -7,8 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "launch": "node launch.js",
-    "teardown": "node teardown.js",
+    "launch": "node ./src/launch.js",
+    "teardown": "node ./src/teardown.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

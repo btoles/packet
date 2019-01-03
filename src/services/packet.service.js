@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 require('dotenv').config();
 
+/** Handle any non-200 status code response */
 const handleBadResponse = response => {
     if (/5\d\d/.test(response.status)) {
         console.log('Unable to communicate to the Packet service(s) at the moment, try again later.');

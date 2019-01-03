@@ -8,7 +8,7 @@ const {
     PACKET_PROJECT_ID: projectId,
     MACHINE_OS: operatingSystem
 } = process.env;
-const createdDevices = JSON.parse(fs.readFileSync('./devices.json'));
+const createdDevices = JSON.parse(fs.readFileSync('./src/devices.json'));
 
 (async () => {
     // Check if the OS requested can be provisioned.
@@ -16,7 +16,11 @@ const createdDevices = JSON.parse(fs.readFileSync('./devices.json'));
     // Assuming the consumer would request an OS by name.
     const selectedOS = availableOS.find(os => os.name === operatingSystem);
     
-    if (!selectedOS || !selectedOS.provisionable_on.length) {
+    if (!selectedOS) {
+        console.log('Could not find the requested operating system, please try another');
+        process.exit(1);
+    }    
+    if (!selectedOS.provisionable_on.length) {
         console.log('Unable to provision devices for this Operating System at the moment.');
         process.exit(1);
     }

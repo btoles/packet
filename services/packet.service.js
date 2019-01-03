@@ -70,7 +70,7 @@ class PacketService {
      * Creates a new device and provisions it in the datacenter.
      * @param {object} body - Request body for Create Device endpoint
      */
-    async createDevice(body) {
+    async createDevice(projectId, body) {
         try {
             const response = await this.fetch(`/projects/${projectId}/devices`, {
                 method: 'POST',

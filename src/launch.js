@@ -72,6 +72,6 @@ const createdDevices = JSON.parse(fs.readFileSync('./src/devices.json'));
     createdDevices.devices.push(createdDevice);
 
     // Keep track of the machines we've created.
-    fs.writeFileSync('./devices.json', JSON.stringify(createdDevices, null, 4));
+    fs.writeFileSync('./src/devices.json', JSON.stringify(createdDevices, null, 4));
     process.exit(0);
 })();

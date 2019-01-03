@@ -4,7 +4,7 @@ require('dotenv').config();
 const PacketService = require('./services/packet.service');
 
 const packetService = new PacketService();
-const createdDevices = JSON.parse(fs.readFileSync('./devices.json'));
+const createdDevices = JSON.parse(fs.readFileSync('./src/devices.json'));
 
 (async () => {
     const numberOfDevices = createdDevices.devices.length;
@@ -15,7 +15,7 @@ const createdDevices = JSON.parse(fs.readFileSync('./devices.json'));
         console.log(`Successfully deleted ${numberOfDevices} devices!`);
 
         // Reset our device list.
-        fs.writeFileSync('./devices.json', JSON.stringify({ devices: [] }, null, 4));
+        fs.writeFileSync('./src/devices.json', JSON.stringify({ devices: [] }, null, 4));
 
         process.exit(0);
     }

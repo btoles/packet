@@ -128,6 +128,9 @@ class PacketService {
             if (response.ok) {
                 return true;
             }
+            else {
+                handleBadResponse(response);
+            }
         }
         catch (error) {
             return false;

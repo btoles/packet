@@ -74,7 +74,7 @@ class PacketService {
         try {
             const response = await this.fetch(`/projects/${projectId}/devices`, {
                 method: 'POST',
-                body
+                body: JSON.stringify(body)
             });
             if (response.ok) {
                 return await response.json();

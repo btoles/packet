@@ -70,7 +70,7 @@ const createdDevices = JSON.parse(fs.readFileSync('./src/devices.json'));
     }
 
     createdDevices.devices.push(createdDevice);
-
+    console.log(`✔ Successfully created device ${createdDevice.id}`);
     // Keep track of the machines we've created.
     fs.writeFileSync('./src/devices.json', JSON.stringify(createdDevices, null, 4));
     process.exit(0);
